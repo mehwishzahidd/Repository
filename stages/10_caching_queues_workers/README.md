@@ -18,7 +18,7 @@ what caches solve · Redis · hit/miss · TTL · eviction · cache-aside / write
 `Producer → Queue → Consumer` · brokers · workers · acknowledgement · retry · **visibility timeout** · **dead-letter queue** · ordering · durability · Kafka / RabbitMQ / SQS concepts · at-most-once vs at-least-once vs "exactly once"
 
 ### Reliability (Group 12)
-timeouts · retries · exponential backoff · **jitter** · circuit breakers · health checks · heartbeats · **leases** · **idempotency** · **backpressure** · load shedding · graceful degradation & shutdown · failure recovery
+timeouts · retries · exponential backoff · **jitter** · circuit breakers (open after N consecutive failures; pick N deliberately) · health checks · heartbeats · **leases** · **idempotency** · **backpressure** · load shedding · graceful degradation & shutdown · failure recovery
 
 ---
 
@@ -26,7 +26,8 @@ timeouts · retries · exponential backoff · **jitter** · circuit breakers · 
 
 - [ ] Add Redis caching to P2 and demonstrate a stampede, then prevent it.
 - [ ] Explain why exactly-once delivery is hard and how idempotency keys sidestep it.
-- [ ] Kill a worker mid-job and show another worker picking it up via a lease.
+- [ ] Kill a worker mid-job and show another worker picking it up via a lease (the bug the OpenAI interviewer found: without leases the event is stuck 'in progress' forever).
+- [ ] Sign a webhook delivery with HMAC and verify it on the receiving side.
 
 ## 🛠️ Project
 

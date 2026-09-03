@@ -43,7 +43,7 @@ rate limiter · worker pool · job queue · log parser · in-memory KV store —
 ## ✅ Checkpoint — you're done with this stage when
 
 - [ ] Implement an LRU cache from scratch and explain why get/put/evict are all O(1).
-- [ ] Given tasks with dependencies, produce a valid order or report the cycle (`A → B → C → A`).
+- [ ] Given tasks with dependencies, produce a valid order or report the cycle (`A → B → C → A`), then add priorities, worker assignment and cascading cancellation.
 - [ ] Solve ~100 mixed LeetCode-style problems (easy → medium) and analyse each one's complexity out loud.
 - [ ] Implement BFS, DFS, topological sort, Dijkstra and Union-Find without notes.
 

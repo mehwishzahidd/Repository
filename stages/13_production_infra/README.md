@@ -35,7 +35,7 @@ authn/authz · encryption · TLS · HMAC · hashing · secrets · least privileg
 
 - [ ] Deploy P6 to Kubernetes with health probes, metrics and a dashboard showing p99 latency.
 - [ ] Profile P3 with a sampling profiler and find the real bottleneck.
-- [ ] Write the profiler coding problem: given a stream of function enter/exit events, build the call tree and time per function.
+- [ ] Write the profiler coding problem: given periodic call-stack samples, reconstruct enter/exit trace events by diffing consecutive samples — and handle recursion by tracking frames by position, not name (see P-mini in `PROJECTS.md`).
 - [ ] Set up CI that runs tests and blocks the merge on failure.
 
 ## 🛠️ Project

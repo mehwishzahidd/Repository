@@ -135,12 +135,18 @@ library should already be automatic so lookup doesn't eat interview time.
   **DAGs**; BFS, DFS, **topological sort, cycle detection**, shortest paths, Dijkstra,
   connected components, Union-Find/DSU; eventually SCCs and MST. (The task-system
   question is exactly "A → B → C → A is an illegal circular dependency".)
+- **The task-system problem, fully:** tasks with priorities, **worker assignment**,
+  dependencies as a DAG, topological sort, cycle detection, and **cascading cancellation**
+  (cancel A → everything that depends on A is cancelled too). 90 minutes for this *plus*
+  the LRU cache, so it has to be fast and clean.
 - **Patterns:** sorting, binary search, prefix sums, two pointers, sliding window,
   recursion, backtracking, greedy, divide & conquer, intervals, dynamic programming,
   bit manipulation basics.
 
 ### Group 3 — Production-quality coding
-"Build an LRU cache." You solve it. Then: "Okay. Make it thread-safe." 😭
+"Build an LRU cache." You solve it with `OrderedDict`. "Now from scratch, with a doubly
+linked list and a hash map." Then: "Okay. Make it thread-safe." 😭 Production quality
+means thread safety, error handling *and* complexity analysis in the comments.
 Write code with clear interfaces, sensible classes/functions, input validation, error
 handling, meaningful names, modularity, tests, useful comments, complexity analysis,
 edge cases. Naturally ask: empty input? capacity = 0? duplicates? two threads? operation
@@ -183,6 +189,8 @@ HMAC, hashes, secrets management, HTTPS/TLS.
 - **SQL:** SELECT/INSERT/UPDATE/DELETE, WHERE, GROUP BY, aggregates, subqueries, joins,
   window functions.
 - **Design:** schemas, normalization/denormalization, primary/foreign keys, constraints.
+- **Row-oriented vs column-oriented storage:** transactional (OLTP) vs analytical (OLAP)
+  workloads and why a column store wins for aggregations over few columns of many rows.
 - **Indexing:** why indexes work, B-trees, composite indexes, selectivity, index vs table scans.
 - **Join internals:** nested-loop, hash join, sort-merge — *when would you pick each and why?*
 - **Transactions:** ACID; isolation levels (read uncommitted → serializable); dirty,
@@ -200,7 +208,8 @@ timeout, dead-letter queues, ordering, durability. Kafka, RabbitMQ, SQS concepts
 Delivery semantics: at-most-once, at-least-once, and why "exactly once" is complicated.
 
 ### Group 12 — Reliability engineering
-Timeouts, retries, exponential backoff, jitter, circuit breakers, health checks,
+Timeouts, retries, exponential backoff, jitter, circuit breakers (open after N consecutive
+failures, half-open probe, and *what N is reasonable*), health checks,
 heartbeats, leases, idempotency, backpressure, load shedding, graceful degradation,
 graceful shutdown, DLQs, failure recovery. Automatic question: *"what happens if this
 process dies exactly here?"*
@@ -327,7 +336,8 @@ queued tokens, expected generation length, GPU memory, TTFT, latency, utilizatio
 can GPU utilization look fine while users wait forever?*
 
 ### Group 33 — Web-crawler-style problems
-`start URL → crawl → extract URLs → dedupe → next level`, then BFS, max depth,
+`start URL → crawl → extract URLs → dedupe → next level`, producing a **site map**, then
+BFS, max depth, robots.txt *parsing* (it turns into a whole thing),
 concurrency, semaphores, rate limiting, robots.txt, retries, redirects, loop detection,
 timeouts, malformed pages, relative URLs, cancellation. A mini-curriculum by itself.
 
@@ -339,7 +349,11 @@ engine, tiny filesystem, message broker.
 ### Group 35 — Profiling & performance
 Call stacks, stack frames, recursion, sampling vs tracing profilers, CPU and memory
 profiling, flame graphs, bottleneck detection. Understand `main → foo → bar` and how the
-stack changes over time (that profiler question isn't random).
+stack changes over time. **The coding problem:** given periodic call-stack snapshots
+from a sampling profiler, reconstruct trace events (when each function started and
+stopped) by diffing consecutive samples to detect enters and exits. **The catch:** a
+recursive function appears several times in one stack, so track frames by *position in
+the stack*, not by name.
 
 ### Group 36 — Security
 Authentication, authorization, encryption, TLS, HMAC, hashing, secrets, least privilege,
@@ -350,9 +364,18 @@ isolation, data privacy, sensitive logging, access control.
 Strong stories for: hardest project / architecture decision / scaling challenge; a
 hard production bug and the signals you used; a failure and what you learned; a
 technical disagreement; prioritization; ambiguity; ownership; ethics/safety (privacy,
-user harm, security); and **simplicity** — Anthropic's published principles prefer the
-simplest approach that works. "I used twelve distributed databases" is not the flex you
-think it is.
+user harm, security — e.g. *pushing back on a logging system that captured far more user
+data than necessary*); and **simplicity** — Anthropic's published principles prefer the
+simplest approach that works. A hiring manager may describe two real approaches and ask
+which you'd pick: *"flexibility you don't need yet is just complexity you pay for now."*
+"I used twelve distributed databases" is not the flex you think it is.
+
+**The take-home + live deep-dive (OpenAI-style):** a 48-hour take-home where **clean code
+and tests matter more than feature completeness** — do not rush it, it's what gets you
+to the onsite. Then a senior engineer walks through your decisions live (*why SQLite? what
+would you swap for prod?*), has you **extend it live** (e.g. HMAC signature verification,
+event-type filtering), and finds the bug you missed (*worker crashes mid-delivery → event
+stuck in-progress forever → fix with leases that auto-requeue*).
 
 ### Group 38 — Technical communication (secretly one of the biggest)
 "I chose A because X. The downside is Y. If requirement Z changed, I'd switch to B."
@@ -412,7 +435,19 @@ batch requests.* That's how the reasoning they're actually testing gets built.
 | Web crawler | BFS, HTTP, URLs, networking, asyncio, semaphores, rate limits, edge cases |
 | System design | General system design + distributed systems + LLM inference + GPUs + scheduling |
 | Profiler coding | Stacks, recursion, careful algorithms, systems reasoning |
-| Hiring manager | Production experience, debugging, scaling, judgment, trade-offs, communication |
+| Hiring manager | Production experience, debugging, scaling, judgment, trade-offs, communication; pick the simpler of two real approaches |
+
+And the OpenAI platform-SWE loop (take-home → deep dive → design → behavioral):
+
+| Interview round | What you need |
+|---|---|
+| Take-home — webhook delivery system | Endpoint registration, event ingestion, reliable delivery, retries + backoff, DLQ, status API, worker process, circuit breaker; FastAPI + SQLite; **clean code + tests** |
+| Technical deep dive | Defend every decision; extend live (HMAC signatures, event-type filtering); find the stuck-in-progress bug → leases |
+| System design — in-memory SQL DB | CREATE TABLE / INSERT / SELECT WHERE / JOIN; row vs column store; nested-loop → hash → sort-merge join; ACID; **WAL + MVCC** without hand-waving |
+| Behavioral | Technical disagreements, failed projects, prioritization, ethical pushback |
+
+The rejection feedback there was "more production distributed-database experience" —
+which is why P7 and P8 exist and why Stage 12 goes so deep.
 
 ---
 

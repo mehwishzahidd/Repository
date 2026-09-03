@@ -30,7 +30,7 @@ two-phase commit · sagas · compensation
 physical clocks · clock skew · logical clocks · ordering events
 
 ### Database internals (Group 9)
-pages · buffer pool · storage engines · B-trees vs LSM trees · query execution & planning · **WAL** · **MVCC** · locks · deadlocks
+**row-oriented vs column-oriented** storage (OLTP vs analytical) · pages · buffer pool · storage engines · B-trees vs LSM trees · query execution & planning · nested-loop vs hash vs sort-merge join · **WAL** · **MVCC** · locks · deadlocks
 
 ---
 
@@ -38,7 +38,7 @@ pages · buffer pool · storage engines · B-trees vs LSM trees · query executi
 
 - [ ] Explain CAP correctly, including what 'partition' really means and why 'CA' is not a choice.
 - [ ] Walk through a Raft leader election and what happens when the leader dies.
-- [ ] Explain how MVCC lets readers not block writers.
+- [ ] Explain how MVCC lets readers not block writers, and how WAL gives durability — and keep answering as the questions go two levels deeper each time.
 - [ ] Build P7 with a WAL and crash it between the log write and the data write — it must recover.
 
 ## 🛠️ Project

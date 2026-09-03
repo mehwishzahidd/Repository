@@ -27,7 +27,7 @@ locks · mutexes · semaphores · atomics · condition variables · shared mutab
 `async def` · `await` · `asyncio.gather()` · `asyncio.create_task()` · semaphores · **cancellation** · timeouts · async queues
 
 ### The crawler (Group 33)
-BFS · max depth · concurrency via semaphore · rate limiting · robots.txt · retries · redirects · loop detection · timeouts · relative URLs · cancellation
+BFS · max depth · site map output · concurrency via semaphore · rate limiting · dedupe · robots.txt parsing · retries · redirect loops · pages that hang 30 s (real timeout logic) · relative vs absolute URLs · cancellation
 
 ---
 

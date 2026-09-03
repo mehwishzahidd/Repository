@@ -36,6 +36,7 @@ the best motivation there is.
 - [ ] P8 Distributed job queue
 - [ ] P9 LLM inference API
 - [ ] P10 LLM scheduler
+- [ ] P-mini Sampling profiler → trace events
 
 ## Milestones
 - [ ] Month 1 — tiny Python programs

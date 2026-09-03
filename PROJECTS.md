@@ -53,41 +53,62 @@ clients update the same row at once.
 ## P3 — Concurrent web crawler *(Stage 07–09)*
 **Build:** start URL → fetch → extract links → dedupe → BFS to the next level, with
 `asyncio`, a semaphore for max concurrency, a max depth, and timeouts.
-**Then add:** rate limiting per host, `robots.txt`, retries with backoff, redirect and
-loop detection, relative-URL resolution and normalization, cancellation.
+**Then add:** a **site map** as the output, rate limiting per host, real `robots.txt`
+parsing, retries with backoff, redirect and loop detection, relative-URL resolution and
+normalization, cancellation.
 **Done when:** it crawls a real site politely, never hangs, and never crawls the same
 page twice.
-**Attacks:** redirect loop · a page that never responds · malformed HTML · DNS failure ·
-10,000 links on one page · you press Ctrl-C mid-crawl.
+**Attacks:** redirect loop · a page that hangs for 30 seconds (your timeout logic must not
+be janky) · malformed HTML · DNS failure · 10,000 links on one page · you press Ctrl-C
+mid-crawl · the interviewer keeps throwing edge cases the entire time.
 
 ## P4 — Task scheduler using DAGs *(Stage 09–10)*
 **Build:** tasks with dependencies (`A → B → C`), topological ordering, parallel
 execution of independent tasks with a worker pool, and **cycle detection**
 (`A → B → C → A` must be rejected).
-**Then add:** priorities, retries, per-task timeouts, a "what's blocked on what" view.
+**Then add:** priorities, **worker assignment**, **cascading cancellation** (cancel a task
+→ cancel everything that depends on it), retries, per-task timeouts, a "what's blocked on
+what" view. Practise it under a clock: the real OA gives 90 minutes for this *and* the
+LRU cache.
 **Attacks:** a task fails halfway · a worker dies · a cycle is introduced at runtime ·
 a premium task arrives behind 500 low-priority ones.
 
 ## P5 — Thread-safe LRU cache *(Stage 09)*
-**Build:** hash map + doubly linked list, O(1) get / put / evict, from scratch. Then make
-it **thread-safe** without making it slow. Then add TTL.
+**Build:** first with `OrderedDict`, then from scratch: hash map + doubly linked list,
+O(1) get / put / evict (the pointer updates on eviction are where people lose time). Then
+make it **thread-safe** without making it slow. Error handling and complexity analysis
+go in the comments. Then add TTL.
 **Done when:** you can explain *why* each operation is O(1) and prove thread safety with
 a stress test.
 **Attacks:** capacity = 0 · duplicate puts · 50 threads hammering it · a get during
 eviction · what if the value is huge?
 
 ## P6 — Webhook delivery system *(Stage 10)*
-**Build:** producers enqueue events; workers deliver them over HTTP with timeouts,
-retries with exponential backoff + jitter, a dead-letter queue, **leases** so a dead
-worker's job gets picked up by another, and idempotency keys so nothing is delivered twice.
+**Build (this is a real OpenAI take-home):** register endpoints, receive events, deliver
+them reliably over HTTP, retries with exponential backoff + jitter, a dead-letter queue
+for permanently failed deliveries, and an **API to check delivery status**. A separate
+**worker process** polls for pending deliveries. FastAPI + SQLite is fine — but be ready
+to say exactly what you'd swap for production and why.
+**Then add:** **HMAC signature** on every delivery so receivers can verify it,
+**event-type filtering** per endpoint, a **circuit breaker** per endpoint (open after N
+consecutive failures — and have an opinion on N), **leases** so a delivery that a
+crashed worker left "in progress" auto-requeues, and idempotency keys so nothing is
+delivered twice.
+**Done when:** the code is clean and the tests are thorough — that matters more than
+feature count — and you can defend every decision out loud, then extend it live.
 **Attacks:** the receiver is down for an hour · a worker crashes mid-delivery · the same
 event is enqueued twice · 100× the traffic · graceful shutdown mid-batch.
 
 ## P7 — Mini database *(Stage 12)*
-**Build:** an in-memory (then on-disk) table store with a SQL-ish query language:
-`SELECT ... WHERE ...`, inserts, a B-tree or hash **index**, and **joins** (nested-loop,
-then hash join). Then add a write-ahead log so it survives a crash.
-**Done when:** you can explain when you'd choose nested-loop vs hash vs sort-merge join.
+**Build (this is a real OpenAI system-design round):** an in-memory (then on-disk) table
+store with basic SQL: `CREATE TABLE`, `INSERT`, `SELECT ... WHERE ...`, a B-tree or hash
+**index**, and **JOINs** — nested-loop first, then hash join, then sort-merge. Decide
+**row-oriented vs column-oriented** and know which workloads each wins. Then add
+transactions with **ACID** guarantees: a **write-ahead log** so it survives a crash, and
+**MVCC** so readers don't block writers.
+**Done when:** you can explain when you'd choose nested-loop vs hash vs sort-merge join,
+and describe WAL + MVCC *without getting hand-wavy* — every answer will open two more
+questions.
 **Attacks:** crash between the WAL write and the data write · a query that ignores the
 index · 1M rows · two transactions writing the same key.
 
@@ -117,7 +138,21 @@ load shedding) · premium customers starve normal traffic · autoscale on the ri
 
 ---
 
+## P-mini — Sampling profiler → trace events *(Stage 13)*
+**Build:** given periodic call-stack snapshots (e.g. `[main, foo, bar]` every 10 ms),
+reconstruct trace events: when each function entered and exited. Diff consecutive
+samples to detect enters and exits.
+**The catch:** recursion — the same function can appear several times in one stack, so
+track frames by *position*, not by name. Then emit Chrome trace-event JSON and open it
+in a flame-graph viewer.
+**Attacks:** a sample is missing · two functions swap between samples · the stack is
+empty for a while · a 1,000-deep recursion.
+
+---
+
 ## 🔥 Then: the interview loop, for real
-With P1–P10 done you have covered every round of that five-round loop (LRU cache,
-task-system DAG, crawler, inference system design, profiler coding, hiring manager).
-Stage 20 turns it into timed mock interviews.
+With P1–P10 (and the mini) done you have built the exact thing behind every round of both
+loops: LRU cache, task-system DAG, crawler, inference system design, profiler coding,
+webhook take-home, in-memory SQL database, hiring manager. Stage 20 turns it into timed
+mock interviews. One more thing both posts agree on: **concurrency shows up in basically
+every round.**
