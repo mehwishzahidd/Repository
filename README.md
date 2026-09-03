@@ -23,6 +23,10 @@ at Level 1, and this repo is the road between the two.
 | [`ROADMAP.md`](./ROADMAP.md) | **The destination map.** All 40 skill groups, the honest timeline, how it maps to the interview rounds, and what "ready" actually means. Read once now, re-read every few months. |
 | [`PROJECTS.md`](./PROJECTS.md) | **The 10 projects you will build**, in order, plus the ways each one gets attacked afterwards. |
 | [`PROGRESS.md`](./PROGRESS.md) | **Your checklist.** Tick things off as you go. Commit it. |
+| [`LEARNING_GUIDE.md`](./LEARNING_GUIDE.md) | **How to learn from zero:** weekly rhythm, how to use the resources, what to do when stuck. Read before Stage 00. |
+| [`LEETCODE.md`](./LEETCODE.md) | **The LeetCode plan:** phases tied to stages, pattern lists, and the problems shaped like the real rounds. |
+| [`GLOSSARY.md`](./GLOSSARY.md) | **The scary words in plain English**, with the stage where each one clicks. |
+| [`RESOURCES.md`](./RESOURCES.md) | **The whole library** — every book, course and practice site from every stage, in one place. |
 
 ---
 
@@ -33,6 +37,7 @@ that tells you when you're done, and the project that goes with it.
 
 | Step | Stage | Roadmap groups | Project |
 |---|---|---|---|
+| 0 | [`00_how_computers_work`](./stages/00_how_computers_work/) — the on-ramp (2–3 weeks) | — | — |
 | 1 | [`01_python`](./stages/01_python/) — runnable lessons 🟢 | 1 | P1 Python programs |
 | 2 | [`02_programming`](./stages/02_programming/) — classes, files, stdlib, stronger Python | 1, 3 | P1 |
 | 3 | [`03_dsa`](./stages/03_dsa/) — data structures & algorithms | 2, 34 | LRU cache v1 |
@@ -52,11 +57,13 @@ that tells you when you're done, and the project that goes with it.
 | 17 | [`17_llm_inference`](./stages/17_llm_inference/) — prefill/decode, serving, streaming, metrics | 21, 26, 27, 30 | P9 inference API |
 | 18 | [`18_batching_kvcache_scheduling`](./stages/18_batching_kvcache_scheduling/) — the heart of it 🚨🚨 | 23, 24, 25, 32 | P10 LLM scheduler |
 | 19 | [`19_multi_gpu_inference`](./stages/19_multi_gpu_inference/) — parallelism, collectives, optimization | 28, 29 | — |
-| 20 | [`20_mock_interviews`](./stages/20_mock_interviews/) — behavioral, communication, mock loops | 37, 38, 39 | 🔥 |
+| 20 | [`20_mock_interviews`](./stages/20_mock_interviews/) — behavioral, communication, project deep dive, values & safety, mock loops | 37, 38, 39 | 🔥 |
+| 21 | [`21_beyond`](./stages/21_beyond/) — optional extras: Go/Rust, computer architecture, math, gRPC, Linux perf, storage, search, open source | — | — |
 
-> 🟢 = lessons you can run today. Everything else has a full syllabus and checkpoint, and
-> gets hands-on lessons built out when you reach it, so you don't drown in content you're
-> not ready for.
+> 🟢 = lessons you can run today. Every stage guide assumes zero prior knowledge and has:
+> a plain-English intro, why interviews care, a time estimate, ordered modules, a full
+> resource list (books · courses · practice · reference, 🆓/💰, ⭐ start-here), practice
+> exercises, beginner pitfalls, a done-when checkpoint and its project.
 
 ---
 
@@ -82,8 +89,11 @@ you're Anthropic-ready to do anything.
 
 ## 🟢 Start here, today
 
-1. Skim [`ROADMAP.md`](./ROADMAP.md) once so you know where the road goes. Don't try to
-   learn it. Just look at the map.
+1. Read [`LEARNING_GUIDE.md`](./LEARNING_GUIDE.md) (10 minutes) and skim
+   [`ROADMAP.md`](./ROADMAP.md) once so you know where the road goes. Don't try to learn
+   it. Just look at the map.
+1b. If "terminal", "server" or "CPU" are fuzzy words, do
+   [`stages/00_how_computers_work`](./stages/00_how_computers_work/) first (2–3 weeks).
 2. Run your first program:
    ```bash
    python3 stages/01_python/01_hello_world.py
@@ -106,12 +116,18 @@ When Stage 01's exercises all pass, say **"ready for Stage 02"** and it gets bui
 ├── ROADMAP.md       ← the 40-group destination map
 ├── PROJECTS.md      ← the 10-project ladder + attack scenarios
 ├── PROGRESS.md      ← your checklist
+├── LEARNING_GUIDE.md ← how to learn from zero (read first)
+├── LEETCODE.md      ← the practice plan
+├── GLOSSARY.md      ← scary words, plain English
+├── RESOURCES.md     ← every resource, one page
 └── stages/
+    ├── 00_how_computers_work/           the on-ramp
     ├── 01_python/                       🟢 runnable lessons + exercises
     ├── 02_programming/
     ├── 03_dsa/
     ├── ...
-    └── 20_mock_interviews/
+    ├── 20_mock_interviews/
+    └── 21_beyond/                       optional extras
 ```
 
 > The rules: **one stage at a time. Code every day. Never skip the "build it yourself"

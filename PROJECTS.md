@@ -89,13 +89,17 @@ them reliably over HTTP, retries with exponential backoff + jitter, a dead-lette
 for permanently failed deliveries, and an **API to check delivery status**. A separate
 **worker process** polls for pending deliveries. FastAPI + SQLite is fine — but be ready
 to say exactly what you'd swap for production and why.
-**Then add:** **HMAC signature** on every delivery so receivers can verify it,
+**Then add:** **HMAC-SHA256 signature** on every delivery (timestamp in the signed
+payload, constant-time verification, replay window, secret rotation),
 **event-type filtering** per endpoint, a **circuit breaker** per endpoint (open after N
 consecutive failures — and have an opinion on N), **leases** so a delivery that a
 crashed worker left "in progress" auto-requeues, and idempotency keys so nothing is
 delivered twice.
 **Done when:** the code is clean and the tests are thorough — that matters more than
 feature count — and you can defend every decision out loud, then extend it live.
+**Do it twice:** once as a timed 6-hour take-home (README, decision log, failure-path
+tests: retry exhausted, worker crash, duplicate event, bad signature), then again properly
+with a Prometheus + Grafana dashboard. This is your **project deep-dive** candidate.
 **Attacks:** the receiver is down for an hour · a worker crashes mid-delivery · the same
 event is enqueued twice · 100× the traffic · graceful shutdown mid-batch.
 
@@ -138,13 +142,13 @@ load shedding) · premium customers starve normal traffic · autoscale on the ri
 
 ---
 
-## P-mini — Sampling profiler → trace events *(Stage 13)*
+## P-mini — Sampling profiler → trace events *(Stage 03, revisited in Stage 13)*
 **Build:** given periodic call-stack snapshots (e.g. `[main, foo, bar]` every 10 ms),
 reconstruct trace events: when each function entered and exited. Diff consecutive
 samples to detect enters and exits.
 **The catch:** recursion — the same function can appear several times in one stack, so
-track frames by *position*, not by name. Then emit Chrome trace-event JSON and open it
-in a flame-graph viewer.
+track frames by *position*, not by name. It's only stacks and bookkeeping, so build it in
+Stage 03; in Stage 13 emit Chrome trace-event JSON and open it in Perfetto.
 **Attacks:** a sample is missing · two functions swap between samples · the stack is
 empty for a while · a 1,000-deep recursion.
 

@@ -428,6 +428,16 @@ batch requests.* That's how the reasoning they're actually testing gets built.
 
 ## 🗺️ How it maps to the five-round loop
 
+How Anthropic's loop is reported to work, end to end: **recruiter screen** (15 min; a
+clear story of why you, why Anthropic) → **online assessment** (60–90 min on CodeSignal /
+Colab / Replit; multi-part problems that build on each other; rewards clean, modular code
+you can extend, not algorithm trivia) → **hiring manager** (45–60 min; judgment, debugging
+process, choosing simple over clever) → onsite: **two coding rounds** (build-something
+problems), **system design** (the inference API), a **project deep dive** (a project you
+own; you know every decision and why), and **behavioral + culture** (failures,
+disagreements, engineering-grade AI-safety reasoning; comfort with discomfort, real
+ownership). Loops vary by team; read the company's own guide.
+
 | Interview round | What you need |
 |---|---|
 | OA — LRU cache | Hash maps, linked lists, O(1), thread safety, testing, clean code |
@@ -447,7 +457,49 @@ And the OpenAI platform-SWE loop (take-home → deep dive → design → behavio
 | Behavioral | Technical disagreements, failed projects, prioritization, ethical pushback |
 
 The rejection feedback there was "more production distributed-database experience" —
-which is why P7 and P8 exist and why Stage 12 goes so deep.
+which is why P7 and P8 exist and why Stage 12 goes so deep. It is also why **the year-one
+job is part of the plan, not a detour**: get hired for backend / data / platform work
+around month 13–18 (from Stage 10 on), accumulate production experience while finishing
+Stages 11–20, then go for the infra loops. Anthropic listings usually ask for several
+years of real experience.
+
+---
+
+## 🧵 Running threads (every stage, from day one)
+
+- **Story bank** — from Stage 01, revise every stage: 2–3 stories each for hardest
+  technical project · a failure and what you changed · a production-style bug and how you
+  diagnosed it · a disagreement · prioritising under pressure · ambiguity · ownership ·
+  choosing simple over clever. Non-tech jobs count (ops, retail, warehouse: real
+  prioritisation and pushback stories live there).
+- **Values and safety** — prep it like a technical topic (Stage 20 §5c): Anthropic's
+  public writing; one "how could this be misused?" paragraph per project; concrete risks
+  you can name in systems you build; never overstate AI experience.
+- **Take-home craft** — from Stage 06 on (Stage 20 §5d): clean code and tests over
+  features; README with decisions; failure-path tests; "what if the process dies here?";
+  defend your tunables.
+- **Communication** — from Stage 03 on: narrate every problem; for every design state
+  assumptions, name the trade-off, say what would change your mind; monthly mocks from
+  Stage 06.
+- **Public proof of work** — from Stage 06 on: every project on GitHub with a real README
+  and architecture diagram; one short write-up per project (what you built, what broke,
+  what you learned); a small fix to an open-source project you use (FastAPI, httpx, vLLM
+  docs) by Stage 12.
+
+## 📅 Milestones (at ~20–25 hours/week from true zero)
+
+| When | Where you are |
+|---|---|
+| Month 3–4 | Comfortable in Python + git; P1 on GitHub |
+| Month 8 | NeetCode 150 done; LRU cache, DAG scheduler, profiler built |
+| Month 13 | Deployed backend — **apply for internships / junior roles** |
+| Month 18 | Concurrency solid, crawler built — competitive for junior backend / data engineering |
+| Month 24 | System design competent — mid-level backend candidate |
+| Month 31 | Distributed-systems foundations — strong backend/infra candidate |
+| Month 40+ | Inference-infra branch done — meaningfully attempt Anthropic-style loops |
+
+At 10–12 hours/week stretch these by roughly half again; at 30+ hours/week compress them.
+Either way the order doesn't change.
 
 ---
 

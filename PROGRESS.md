@@ -4,6 +4,7 @@ Tick things off (`[ ]` → `[x]`) and commit. Looking back at this file in six m
 the best motivation there is.
 
 ## Stages
+- [ ] 00 How computers work (on-ramp)
 - [ ] 01 Python basics — all lessons run, `check.py` all green
 - [ ] 02 Programming — classes, files, stdlib, stronger Python
 - [ ] 03 DSA — Big-O, core structures, graphs, DP; LRU cache v1
@@ -24,6 +25,19 @@ the best motivation there is.
 - [ ] 18 Batching + KV cache + scheduling
 - [ ] 19 Distributed / multi-GPU inference
 - [ ] 20 Mock interviews
+- [ ] 21 Beyond the checklist (optional extras, as reached)
+
+## LeetCode
+- [ ] Phase A (~30 easies)
+- [ ] Phase B (NeetCode 150 by pattern)
+- [ ] Phase C (the loop-shaped set, cold)
+- [ ] Phase D maintenance running
+
+## Running threads
+- [ ] Story bank started (`notes/stories.md`)
+- [ ] Values & safety notes started
+- [ ] Every project has a README + write-up on GitHub
+- [ ] One open-source contribution
 
 ## Projects
 - [ ] P1 Python programs
