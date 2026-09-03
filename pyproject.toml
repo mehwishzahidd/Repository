@@ -1,0 +1,18 @@
+# Project-wide tool configuration.
+#
+# `--import-mode=importlib` lets pytest collect test files that share a basename
+# in different folders without needing __init__.py everywhere. (Without it,
+# projects/*/tests/test_*.py collide on import.) You'll meet this again in Stage 06.
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib"
+norecursedirs = ["projects/_template", ".git", "__pycache__"]
+testpaths = ["stages", "projects"]
+
+[tool.ruff]
+line-length = 100
+exclude = [".git", "__pycache__"]
+
+[tool.ruff.lint]
+# Beginner-friendly: the essentials, not the whole rulebook.
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]   # long lines in teaching comments are fine
