@@ -27,6 +27,12 @@ at Level 1, and this repo is the road between the two.
 | [`LEETCODE.md`](./LEETCODE.md) | **The LeetCode plan:** phases tied to stages, pattern lists, and the problems shaped like the real rounds. |
 | [`GLOSSARY.md`](./GLOSSARY.md) | **The scary words in plain English**, with the stage where each one clicks. |
 | [`RESOURCES.md`](./RESOURCES.md) | **The whole library** — every book, course and practice site from every stage, in one place. |
+| [`PLACEMENT.md`](./PLACEMENT.md) | **Not at zero?** A per-stage self-check so you start where you belong. |
+| [`AI_TUTOR.md`](./AI_TUTOR.md) | **Using Claude / ChatGPT as a tutor** without cheating yourself: the rules, and prompts by stage. |
+| [`YEAR_ONE_JOB.md`](./YEAR_ONE_JOB.md) | **Getting hired on the way up:** the three realistic first roles, when to apply, the résumé built from these projects, referrals. |
+| [`BUDGET.md`](./BUDGET.md) | **What it costs** stage by stage, and the free path through all of it. |
+| [`projects/`](./projects/) | **Project skeletons** with design-doc and decision-log templates, and runnable attack scripts. |
+| [`notes/`](./notes/) | **Your running threads:** story bank, journal, LeetCode redo list, unanswered questions, safety notes, designs. |
 
 ---
 
@@ -39,7 +45,7 @@ that tells you when you're done, and the project that goes with it.
 |---|---|---|---|
 | 0 | [`00_how_computers_work`](./stages/00_how_computers_work/) — the on-ramp (2–3 weeks) | — | — |
 | 1 | [`01_python`](./stages/01_python/) — runnable lessons 🟢 | 1 | P1 Python programs |
-| 2 | [`02_programming`](./stages/02_programming/) — classes, files, stdlib, stronger Python | 1, 3 | P1 |
+| 2 | [`02_programming`](./stages/02_programming/) — classes, files, regex, stdlib, testing 🟢 | 1, 3 | P1 |
 | 3 | [`03_dsa`](./stages/03_dsa/) — data structures & algorithms | 2, 34 | LRU cache v1 |
 | 4 | [`04_git_linux`](./stages/04_git_linux/) — Git, GitHub, shell, Linux | 1 | — |
 | 5 | [`05_sql_databases`](./stages/05_sql_databases/) — SQL, schema design, indexes | 9 | — |
@@ -60,7 +66,8 @@ that tells you when you're done, and the project that goes with it.
 | 20 | [`20_mock_interviews`](./stages/20_mock_interviews/) — behavioral, communication, project deep dive, values & safety, mock loops | 37, 38, 39 | 🔥 |
 | 21 | [`21_beyond`](./stages/21_beyond/) — optional extras: Go/Rust, computer architecture, math, gRPC, Linux perf, storage, search, open source | — | — |
 
-> 🟢 = lessons you can run today. Every stage guide assumes zero prior knowledge and has:
+> 🟢 = runnable lessons plus an auto-grader you can use today (Stages 01 and 02). Later
+> stages get their lessons built as you reach them: say "ready for Stage N". Every stage guide assumes zero prior knowledge and has:
 > a plain-English intro, why interviews care, a time estimate, ordered modules, a full
 > resource list (books · courses · practice · reference, 🆓/💰, ⭐ start-here), practice
 > exercises, beginner pitfalls, a done-when checkpoint and its project.
@@ -103,8 +110,11 @@ you're Anthropic-ready to do anything.
    python3 stages/01_python/exercises/check.py
    ```
 4. Tick off Stage 01 in [`PROGRESS.md`](./PROGRESS.md) and commit.
+5. `make check` runs every stage's grader, `make lessons` smoke-runs every lesson file, and
+   `make attack` runs the project attack scripts.
 
-When Stage 01's exercises all pass, say **"ready for Stage 02"** and it gets built.
+Stage 02's lessons and exercises are already built. When its checker is all green, say
+**"ready for Stage 03"**.
 
 ---
 
@@ -120,10 +130,15 @@ When Stage 01's exercises all pass, say **"ready for Stage 02"** and it gets bui
 ├── LEETCODE.md      ← the practice plan
 ├── GLOSSARY.md      ← scary words, plain English
 ├── RESOURCES.md     ← every resource, one page
+├── PLACEMENT.md · AI_TUTOR.md · YEAR_ONE_JOB.md · BUDGET.md
+├── Makefile         ← make check / lessons / test / attack / anki
+├── projects/        ← skeletons, DESIGN.md templates, attack.py scripts
+├── notes/           ← story bank, journal, redo list, questions, designs
+├── anki/            ← glossary flashcards (generated)
 └── stages/
     ├── 00_how_computers_work/           the on-ramp
     ├── 01_python/                       🟢 runnable lessons + exercises
-    ├── 02_programming/
+    ├── 02_programming/                  🟢 runnable lessons + exercises
     ├── 03_dsa/
     ├── ...
     ├── 20_mock_interviews/

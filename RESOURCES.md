@@ -5,6 +5,8 @@ Every book, course, practice site and reference from every stage, in stage order
 ⭐ item for your *current* stage and finish it (see `LEARNING_GUIDE.md` §2).
 
 Stage guides own the detail (what chapters, when); this page is for finding things fast.
+See also `LEETCODE.md` (practice plan), `AI_TUTOR.md` (using AI as a tutor) and
+`BUDGET.md` (what each stage costs, and the free path).
 
 
 ---
@@ -149,6 +151,8 @@ Stage guides own the detail (what chapters, when); this page is for finding thin
 - **AlgoExpert** 💰 — optional; curated explanations if you want a paid track.
 - **VisuAlgo** (visualgo.net) 🆓 — animates every algorithm; use it when stuck.
 - **Structy** 💰 — great for graph/recursion beginners.
+- **CodeSignal practice area** 🆓 — one problem a week here, because it's the OA's actual
+  environment. Also try a problem in a bare Colab notebook.
 
 ### Reference
 - **Big-O Cheat Sheet** (bigocheatsheet.com) 🆓
@@ -921,6 +925,9 @@ Stage guides own the detail (what chapters, when); this page is for finding thin
 
 - **`LEETCODE.md`** — the practice plan and problem lists.
 - **`LEARNING_GUIDE.md`** — how to use all of this without drowning.
+- **`AI_TUTOR.md`** — using Claude/ChatGPT as a tutor, not a crutch.
+- **`YEAR_ONE_JOB.md`** — the first job, the résumé, referrals.
 - **Anthropic and OpenAI careers pages / interview guides** 🆓 — the primary sources on the loops.
-- **Newsletters to stay current:** ByteByteGo 🆓, The Pragmatic Engineer 🆓/💰, Interconnects 🆓, SemiAnalysis 🆓/💰 (GPU economics), Latent Space 🆓.
-- **Communities:** Python Discord, GPU MODE Discord, MLOps Community, r/learnprogramming, r/ExperiencedDevs (read-only for a while).
+- **Google's Engineering Practices (code review guide)** 🆓 — read once in Stage 04, again in Stage 20.
+- **Newsletters:** ByteByteGo 🆓, The Pragmatic Engineer 🆓/💰, Interconnects 🆓, SemiAnalysis 🆓/💰 (GPU economics), Latent Space 🆓.
+- **Communities:** Python Discord, GPU MODE Discord, MLOps Community, r/learnprogramming, r/ExperiencedDevs.

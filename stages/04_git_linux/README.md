@@ -44,6 +44,14 @@ computers: faster than clicking, scriptable, and the only interface on a server.
    terminal), Python **debugger** (breakpoints, step, watch, call stack), `pdb` basics,
    and enough `vim` to edit a file on a server (`i`, `Esc`, `:wq`).
 9. **Reading documentation** — `man`, `--help`, official docs, how to search errors.
+10. **Code review as a skill** — reading a pull-request diff top to bottom, asking "what
+    could break?", leaving comments that are specific and kind ("this loop is O(n²) for
+    large inputs; a set would fix it" not "this is slow"), receiving comments without
+    defending, and the reviewer's checklist: correctness → tests → edge cases → naming
+    → style. Practise on your own PRs first (review yesterday's code as if a stranger wrote
+    it), then on open-source PRs you read but don't comment on, then on a study partner's
+    code. Half of the OpenAI deep-dive round is you being reviewed live; this is the
+    rehearsal. Resource: **Google's Engineering Practices, "How to do a code review"** 🆓.
 
 ---
 
@@ -114,8 +122,11 @@ computers: faster than clicking, scriptable, and the only interface on a server.
 - [ ] You use the debugger to find a bug, not `print`.
 
 ## 🛠️ Project
-Add a **GitHub Actions** workflow to this repo that runs `pytest` and the Stage 01 checker
-on every push. Write a `Makefile` or `justfile` with `test`, `lint`, `format` targets.
+This repo already has a `Makefile` and a GitHub Actions workflow (`.github/workflows/
+check.yml`) that run the lessons and checkers. Your project: **read both until you can
+explain every line**, then extend the workflow with `ruff` linting and a `pytest` step for
+`projects/`, and add `format` and `lint` targets to the Makefile. Then open it as a PR and
+review your own diff using the checklist in module 10.
 
 ---
 

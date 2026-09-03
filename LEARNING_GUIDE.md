@@ -69,6 +69,28 @@ this shape instead:
 
 ---
 
+## 3b. The bad-week plan
+
+Bad weeks will happen: work, school, illness, life. The goal in a bad week is not
+progress, it's keeping the habit alive. The minimum that counts as a win:
+
+- **20 minutes**, most days: one lesson file, or one LeetCode easy, or re-read yesterday's
+  journal entry and redo one exercise.
+- **One commit** that week, even if it's a line in `notes/journal.md`.
+- No new material. Repetition only.
+
+Log it as a normal week in `PROGRESS.md`. Three bad weeks in a row is a signal to shrink
+the weekly target, not to quit. Missing a day is fine; a zero week is what kills plans.
+
+## 3c. Accountability (don't do this alone)
+
+- By Stage 02: find **one study partner or one Discord** (Python Discord, r/learnpython,
+  a local group). Post what you did each week. One sentence is enough.
+- From Stage 06: make progress **public** — a GitHub commit streak, a short blog, a
+  LinkedIn post per project. It doubles as the proof-of-work thread and, later, as the
+  referral network that infra hiring actually runs on (`YEAR_ONE_JOB.md`).
+- From Stage 11: monthly mocks with a human. AI mocks in between (`AI_TUTOR.md`).
+
 ## 4. How to study so it actually sticks
 
 - **Active recall.** After a lesson, close it and write out (or say aloud) what you
@@ -96,7 +118,7 @@ this shape instead:
 5. **Ask an AI assistant — the right way.** Ask it to *explain* the concept or the error,
    not to write the solution. If it writes code, retype it yourself and make sure you can
    explain every line. Copy-paste from AI is the new copy-paste from Stack Overflow: it
-   feels like progress and teaches nothing.
+   feels like progress and teaches nothing. Full rules and per-stage prompts: `AI_TUTOR.md`.
 6. **Time-box it.** 30–45 minutes genuinely stuck → take a walk → come back → if still
    stuck, note it in your journal, move on, and return tomorrow. Sleep fixes bugs.
 7. **Ask a human.** Discord servers (Python Discord, r/learnpython), study groups. Post
@@ -138,13 +160,20 @@ where momentum goes to die.
 
 ## 8. The running threads (don't leave these to the end)
 
-From day one, keep a `notes/` folder with `stories.md` (behavioral story bank — add to it
-every stage), `journal.md`, `leetcode.md` (the redo list) and, from Stage 06, a
-`designs/` folder. `ROADMAP.md` → *Running threads* lists the five habits (story bank,
+The `notes/` folder already exists with `stories.md` (behavioral story bank — add to it
+every stage), `journal.md`, `leetcode.md` (the redo list), `questions.md` (every question
+you couldn't answer), `safety.md`, and `designs/`. Use them from day one. `ROADMAP.md` → *Running threads* lists the five habits (story bank,
 values & safety, take-home craft, communication, public proof of work) and when each
 starts. They're cheap weekly and impossible to fake at the end.
 
-## 9. Tools to set up in week one
+## 9. Quarterly review
+
+Every three months (it's a checklist in `PROGRESS.md`): re-read the interview write-ups in
+`ROADMAP.md`, the companies' own careers pages, and the stage you're about to start.
+Adjust. This plan will be wrong in places by the time you reach them; the habit of
+correcting it is worth more than any single page in it.
+
+## 10. Tools to set up in week one
 
 - **Python 3.12+** (python.org, or via your OS package manager)
 - **VS Code** (free) with the Python extension — or PyCharm Community (free)

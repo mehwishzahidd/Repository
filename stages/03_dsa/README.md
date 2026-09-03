@@ -105,6 +105,8 @@ teaches the idea; LeetCode makes it reflex.
 - **AlgoExpert** 💰 — optional; curated explanations if you want a paid track.
 - **VisuAlgo** (visualgo.net) 🆓 — animates every algorithm; use it when stuck.
 - **Structy** 💰 — great for graph/recursion beginners.
+- **CodeSignal practice area** 🆓 — one problem a week here, because it's the OA's actual
+  environment. Also try a problem in a bare Colab notebook.
 
 ### Reference
 - **Big-O Cheat Sheet** (bigocheatsheet.com) 🆓

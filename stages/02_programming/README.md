@@ -18,6 +18,27 @@ grouping data and behaviour into **classes**, saving things to **files**, handli
 
 ---
 
+## The runnable lessons in this folder (⭐ start here)
+
+Same drill as Stage 01: read, run, change something, re-run. Then `exercises/`.
+
+| # | File | You'll learn |
+|---|------|--------------|
+| 1 | `01_dictionaries_and_sets.py` | Counting, grouping, nesting, sets, why O(1) matters |
+| 2 | `02_exceptions.py` | try/except/else/finally, raising, custom exceptions, tracebacks |
+| 3 | `03_files_and_json.py` | `with`, `pathlib`, JSON round-trips, CSV with bad rows |
+| 4 | `04_classes.py` | `__init__`/`self`, dunder methods, dataclasses, composition vs inheritance |
+| 5 | `05_comprehensions_and_generators.py` | Comprehensions, iterators, `yield`, streaming |
+| 6 | `06_decorators_and_context_managers.py` | Functions as values, closures, `@timer`, `@retry`, `with` |
+| 7 | `07_standard_library.py` | `Counter`, `deque`, `OrderedDict` (LRU v1), `heapq`, `bisect`, `itertools`, `datetime`, `enum`, `logging` |
+| 8 | `08_regular_expressions.py` | The ten regex pieces, groups, `findall`, `sub`, log parsing, link extraction |
+| 9 | `09_type_hints_and_testing.py` | Type hints, docstrings, pytest (`assert`, `raises`, parametrize, fixtures) |
+
+```bash
+python3 stages/02_programming/01_dictionaries_and_sets.py
+python3 stages/02_programming/exercises/check.py     # 12 exercises, ends with LRU v1
+```
+
 ## Modules (in order)
 
 1. **Dictionaries and sets, properly** — nested dicts, `.get()`, `.items()`, counting,
@@ -41,8 +62,13 @@ grouping data and behaviour into **classes**, saving things to **files**, handli
 8. **Context managers** — `with`, writing your own with `__enter__/__exit__` and
    `contextlib`. (Locks in Stage 09 are used this way.)
 9. **The standard library tour** — `collections` (`Counter`, `deque`, `defaultdict`,
-   `OrderedDict`), `heapq`, `bisect`, `itertools`, `datetime`, `random`, `math`, `re`
-   (regular expressions), `logging`, `time`, `os`/`sys`, `enum`, `typing`.
+   `OrderedDict`), `heapq`, `bisect`, `itertools`, `datetime`, `random`, `math`,
+   `logging`, `time`, `os`/`sys`, `enum`, `typing`.
+9b. **Regular expressions — give this an afternoon, not a line.** The ten building
+   blocks, groups and named groups, `search`/`fullmatch`/`findall`/`sub`/`split`,
+   greedy vs lazy, and when *not* to use regex. Log parsing and the crawler's link
+   extraction both live here. Practise at **regex101.com** (Python flavour) 🆓 and with
+   **RegexOne** 🆓; keep a cheat-sheet.
 10. **Type hints** — annotating functions and dataclasses, `Optional`, `list[int]`,
     running `mypy`/`pyright`. Interviewers read them as a sign of care.
 11. **Testing with pytest** — writing `test_*.py`, `assert`, arrange/act/assert,

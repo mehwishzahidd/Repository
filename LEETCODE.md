@@ -35,7 +35,11 @@ mirrors the rest. You do not need Premium to follow this plan.
    Then state time and space complexity, list three edge cases, and write it the way you'd
    ship it: names, small helpers, a docstring. The OA is graded on code quality and on how
    well your solution survives "now add X", not on acceptance alone.
-9. **Before any real interview:** a 4-week ramp at one problem a day from that company's
+9. **Practise in the real environment.** The Anthropic OA runs on CodeSignal or Colab,
+   not your editor: no autocomplete you're used to, a visible timer, a different runner.
+   From Stage 03, do one problem a week in CodeSignal's free practice area (or a plain
+   Colab notebook) so the interface is boring by the time it matters.
+10. **Before any real interview:** a 4-week ramp at one problem a day from that company's
    tagged list, plus the Phase C set redone cold.
 
 Free resources: **NeetCode.io** (roadmap + video for every problem below, 🆓),

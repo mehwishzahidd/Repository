@@ -75,7 +75,11 @@ against any subset, and should, repeatedly).
    prompt/data leakage in logs, abuse of rate limits, silent partial failures) and the
    process that catches them. Have a real "time I pushed back on something I thought was
    wrong" story. **Never overstate AI experience; interviewers notice.**
-5d. **Take-home craft** — scope to what you can finish *cleanly* in 4–6 hours; cut
+5d. **Being reviewed live** — the deep-dive round is a code review of *you*. Practise it:
+   someone reads your P6 diff and asks "why?" at every function; you answer without
+   defending, note what you'd change, and say "good catch" when it is one. Review a study
+   partner's project the same way. (Stage 04 module 10 has the checklist.)
+5e. **Take-home craft** — scope to what you can finish *cleanly* in 4–6 hours; cut
    features before cutting tests; README with how-to-run, an architecture sketch, every
    non-obvious decision and what you'd change for production; tests for the failure paths
    (retry exhausted, worker crash, duplicate event, bad signature), not just the happy

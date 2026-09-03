@@ -33,11 +33,29 @@ the best motivation there is.
 - [ ] Phase C (the loop-shaped set, cold)
 - [ ] Phase D maintenance running
 
+## Quarterly review (every 3 months: re-read the loops, the careers pages, and the next stage; adjust)
+- [ ] Q1
+- [ ] Q2
+- [ ] Q3
+- [ ] Q4
+- [ ] Q5
+- [ ] Q6
+- [ ] Q7
+- [ ] Q8
+
+## Housekeeping
+- [ ] Link pass: open every resource in `RESOURCES.md` on a machine with web access; fix the moved ones
+- [ ] Study partner / Discord found (by Stage 02)
+- [ ] Progress made public (by Stage 06)
+- [ ] Billing alarm set before first cloud account
+
 ## Running threads
 - [ ] Story bank started (`notes/stories.md`)
 - [ ] Values & safety notes started
 - [ ] Every project has a README + write-up on GitHub
 - [ ] One open-source contribution
+- [ ] `notes/questions.md` reviewed weekly
+- [ ] Weekly CodeSignal practice problem (from Stage 03)
 
 ## Projects
 - [ ] P1 Python programs
