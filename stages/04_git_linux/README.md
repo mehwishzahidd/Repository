@@ -124,9 +124,10 @@ computers: faster than clicking, scriptable, and the only interface on a server.
 ## 🛠️ Project
 This repo already has a `Makefile` and a GitHub Actions workflow (`.github/workflows/
 check.yml`) that run the lessons and checkers. Your project: **read both until you can
-explain every line**, then extend the workflow with `ruff` linting and a `pytest` step for
-`projects/`, and add `format` and `lint` targets to the Makefile. Then open it as a PR and
-review your own diff using the checklist in module 10.
+explain every line** (including why `pyproject.toml` sets `--import-mode=importlib` — that
+line exists because CI failed without it), then add a `format` target to the Makefile
+(`black` or `ruff format`) and a matching lint step to the workflow. Open it as a PR and
+review your own diff using the checklist in module 10 before merging it.
 
 ---
 

@@ -15,13 +15,13 @@ lessons:
 	@for f in stages/0*/[0-9]*.py; do python3 $$f > /dev/null 2>&1 && echo "ok   $$f" || echo "FAIL $$f"; done; rm -rf stages/*/_scratch
 
 test:
-	@python3 -m pytest stages projects -q 2>/dev/null || echo "pytest not installed or no tests yet (pip install pytest)"
+	@python3 -m pytest -q 2>/dev/null || echo "pytest not installed or no tests yet (pip install pytest)"
 
 attack:
 	@for a in projects/*/attack.py; do echo "== $$a"; python3 $$a; done
 
 lint:
-	@command -v ruff >/dev/null && ruff check stages projects || echo "ruff not installed (pip install ruff)"
+	@command -v ruff >/dev/null && ruff check . || echo "ruff not installed (pip install ruff)"
 
 anki:
 	@python3 anki/build_deck.py
